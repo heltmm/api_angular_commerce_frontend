@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
+import { Angular2TokenService } from 'angular2-token';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { AppComponent } from './app.component';
      AppRoutingModule,
      MaterializeModule,
   ],
-  providers: [],
+  providers: [ Angular2TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
