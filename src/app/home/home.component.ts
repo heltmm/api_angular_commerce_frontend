@@ -12,6 +12,7 @@ import { Product } from '../product.model'
 
 export class HomeComponent implements OnInit {
   private apiUrl = 'http://localhost:3000/products';
+  private addUrl = 'http://localhost:3000/order_items';
   data: Product[];
 
   constructor(private http: Http) {
@@ -29,6 +30,11 @@ export class HomeComponent implements OnInit {
       console.log(data);
       this.data = data
     })
+  }
+
+  addProductsToCart(product_id) {
+    return this.http.post(this.addUrl, {quantity: 1, product_id: product_id} )
+    .map((res: Response) => res.json())
   }
 
   ngOnInit() {

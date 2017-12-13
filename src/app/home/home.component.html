@@ -4,6 +4,7 @@
     <ng-container *ngFor="let product of data">
       <p>{{product.name}}</p>
       <p>{{product.price | currency}}</p>
+      <button (click)="addProductsToCart(product.id)">Add To Cart</button>
       <hr>
     </ng-container>
   </div>

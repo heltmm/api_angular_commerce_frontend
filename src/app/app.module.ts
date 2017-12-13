@@ -32,7 +32,7 @@ import {AuthGuard} from "./guards/auth.guard";
      AppRoutingModule,
      MaterializeModule,
   ],
-  providers: [ Angular2TokenService, AuthService ],
+  providers: [ Angular2TokenService, AuthService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

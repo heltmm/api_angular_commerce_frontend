@@ -19,7 +19,7 @@ export class RegisterFormComponent implements OnInit {
   constructor(public authService:AuthService) {}
   ngOnInit() {}
   onSignUpSubmit(){
-    this.authService.logInUser(this.signUpUser).subscribe(
+    this.authService.registerUser(this.signUpUser).subscribe(
       (res) => {
         if (res.status == 200){
           this.onFormResult.emit({signedUp: true, res})
