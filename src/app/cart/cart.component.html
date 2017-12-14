@@ -1,3 +1,13 @@
-<p>
-  cart works!
-</p>
+<div class="row">
+  <div class="col s12">
+    <h1> Current Cart:</h1>
+    <ng-container *ngFor="let order_item of data.products">
+      <p>Product: {{order_item[0].name}}</p>
+      <p>Price: {{order_item[0].price | currency}}</p>
+      <p>Quantity: {{order_item[1].quantity}}</p>
+      <button (click)="removeProductFromCart(order_item[1].id)">Remove From Cart</button>
+      <hr>
+    </ng-container>
+    <h2>Total Price: {{data.total}}</h2>
+  </div>
+</div>

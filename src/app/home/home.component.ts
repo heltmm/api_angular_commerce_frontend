@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private http: Http, public authservice: AuthService, private tokenService: Angular2TokenService) {
     this.getProducts();
-    this.getData();
     this.tokenService.init({
       apiBase: 'http://localhost:3000'
     })
