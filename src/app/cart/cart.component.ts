@@ -12,13 +12,13 @@ import { Response, Http, Headers, RequestOptions } from '@angular/http';
   styleUrls: ['./cart.component.sass']
 })
 export class CartComponent implements OnInit {
-  data: OrderItem[];
+  data: Observable<any[]>;
 
   constructor( public authservice: AuthService, private tokenService: Angular2TokenService) {
     this.tokenService.init({
       apiBase: 'http://localhost:3000'
     })
-    this.getCart();
+
   }
 
   getData() {
@@ -35,11 +35,14 @@ export class CartComponent implements OnInit {
 
   removeProductFromCart(product_id){
     this.tokenService.delete(`/order_items/${product_id}`)
-    .subscribe(res => console.log(res.json()));;
-    location.reload();
+    .subscribe(res => {
+      console.log(res.json())
+      this.getCart();
+    })
   }
 
   ngOnInit() {
+    this.getCart();
   }
 
 }

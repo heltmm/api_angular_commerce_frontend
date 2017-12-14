@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map'
 import { Product } from '../product.model'
 import { AuthService }     from '../services/auth.service';
 import { Angular2TokenService} from 'angular2-token'
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -19,8 +20,7 @@ export class HomeComponent implements OnInit {
   data: Product[];
 
 
-  constructor(private http: Http, public authservice: AuthService, private tokenService: Angular2TokenService) {
-    this.getProducts();
+  constructor(private http: Http, public authservice: AuthService, private tokenService: Angular2TokenService, private router: Router) {
     this.tokenService.init({
       apiBase: 'http://localhost:3000'
     })
@@ -40,12 +40,17 @@ export class HomeComponent implements OnInit {
 
   addProductsToCart(product_id) {
     let body = {quantity: 1, product_id: product_id}
-    return this.tokenService.post(this.addUrl, body)
-    .subscribe(res => console.log(res.json()));;
+    this.tokenService.post(this.addUrl, body)
+    .subscribe(res => {
+      console.log(res.json())
+      this.router.navigate(['/cart'])
+    });;
+
 
   }
 
   ngOnInit() {
+    this.getProducts();
   }
 
 }
