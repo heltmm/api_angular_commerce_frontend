@@ -7,6 +7,10 @@
 
       <ul class="right hide-on-med-and-down">
 
+        <li *ngIf="(authService.userSignedIn$ | async)">
+          <a href='/cart'>Cart</a>
+        </li>
+
         <li *ngIf="!(authService.userSignedIn$ | async)">
           <a (click)="presentAuthDialog()" >LOGIN</a>
         </li>

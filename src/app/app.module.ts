@@ -14,6 +14,9 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import {AuthService} from "./services/auth.service";
 import { ProfileComponent } from './profile/profile.component';
 import {AuthGuard} from "./guards/auth.guard";
+import { CartComponent } from './cart/cart.component';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+
 
 @NgModule({
   declarations: [
@@ -23,16 +26,17 @@ import {AuthGuard} from "./guards/auth.guard";
     AuthDialogComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    ProfileComponent
+    ProfileComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
-     FormsModule,
-     HttpModule,
-     AppRoutingModule,
-     MaterializeModule,
+    FormsModule,
+    HttpModule,
+    AppRoutingModule,
+    MaterializeModule
   ],
-  providers: [ Angular2TokenService, AuthService, AuthGuard ],
+  providers: [ Angular2TokenService, AuthService, AuthGuard, AuthHttp, AuthConfig ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
