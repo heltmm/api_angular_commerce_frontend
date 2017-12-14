@@ -4,7 +4,7 @@ import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { Product } from '../product.model'
 import { AuthService }     from '../services/auth.service';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { Angular2TokenService} from 'angular2-token'
 
 @Component({
   selector: 'app-home',
@@ -15,13 +15,16 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 export class HomeComponent implements OnInit {
   private userUrl = ''
   private apiUrl = 'http://localhost:3000/products';
-  private addUrl = 'http://localhost:3000/order_items';
+  private addUrl = '/order_items';
   data: Product[];
 
 
-  constructor(private http: Http, private authHttp: AuthHttp, public authservice: AuthService) {
+  constructor(private http: Http, public authservice: AuthService, private tokenService: Angular2TokenService) {
     this.getProducts();
     this.getData();
+    this.tokenService.init({
+      apiBase: 'http://localhost:3000'
+    })
   }
 
   getData() {
@@ -38,7 +41,7 @@ export class HomeComponent implements OnInit {
 
   addProductsToCart(product_id) {
     let body = {quantity: 1, product_id: product_id}
-    return this.authHttp.post(this.addUrl, body)
+    return this.tokenService.post(this.addUrl, body)
     .subscribe(res => console.log(res.json()));;
 
   }

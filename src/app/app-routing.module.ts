@@ -5,6 +5,8 @@ import {ProfileComponent} from "./profile/profile.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {CartComponent} from "./cart/cart.component";
 
+
+
 const routes: Routes = [
   {
     path: '',

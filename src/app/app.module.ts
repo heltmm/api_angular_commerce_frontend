@@ -15,8 +15,6 @@ import {AuthService} from "./services/auth.service";
 import { ProfileComponent } from './profile/profile.component';
 import {AuthGuard} from "./guards/auth.guard";
 import { CartComponent } from './cart/cart.component';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
-
 
 @NgModule({
   declarations: [
@@ -31,12 +29,12 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule,
-    AppRoutingModule,
-    MaterializeModule
+     FormsModule,
+     HttpModule,
+     AppRoutingModule,
+     MaterializeModule,
   ],
-  providers: [ Angular2TokenService, AuthService, AuthGuard, AuthHttp, AuthConfig ],
+  providers: [ Angular2TokenService, AuthService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
